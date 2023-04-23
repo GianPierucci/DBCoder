@@ -1,0 +1,30 @@
+<h1>Vehículos</h1>
+
+<form id="formCargaAutos">
+    <label for="input_tipo">Marca</label> <input id="input_tipo" name="tipo" type="text" placeholder="Ingresar Marca"><br>
+    <label for="input_marca">Modelo</label> <input id="input_marca" name="marca" type="text" placeholder="Ingresar Modelo"><br>
+    <label for="input_modelo">Tipo</label> <input id="input_modelo" name="modelo" type="text" placeholder="Ingresar Tipo"> <br>
+    <label for="input_año">Año</label> <input id="input_año" name="anio" type="text" placeholder="Ingresar Año"><br>
+    <label for="input_combustible">Combustible</label> <input id="input_combustible" name="combustible" type="text" placeholder="Ingresar Combustible"><br>
+    <button type="submit">Guardar</button>
+</form>
+
+<h2>Listado de vehículos</h2>
+
+{{#if hayAutos}}
+    <ul>
+        {{#each autos}}
+        <br>
+            <li>Marca: {{this.marca}}</li>
+            <li>Modelo: {{this.modelo}}</li>
+            <li>Tipo: {{this.tipo}}</li>
+            <li>Año: {{this.anio}}</li>
+            <li>Combustible: {{this.combustible}}</li>
+        <br>
+        {{/each}}
+    </ul>
+{{else}}
+<p>No hay vehiculos para mostrar</p>
+{{/if}}
+
+<script src="/js/cargaAutos.js"></script>
