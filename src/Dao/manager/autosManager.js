@@ -1,12 +1,5 @@
 import mongoose from "mongoose"
-
-const schemaAutos = new mongoose.Schema({
-    tipo: {type: String, required: true},
-    marca: {type: String, required: true},
-    modelo: {type: String, required: true},
-    anio: {type: String, required: true},
-    combustible: {type: String, required: true},
-}, {versionKey: false})
+import { schemaAutos } from "./models/schemaAutos.js"
 
 class AutosManager {
     constructor() {

@@ -1,0 +1,21 @@
+<h1>Mensajes</h1>
+
+<form id="formMensajes">
+    <label for="input_nomUs">Nombre:</label><input id="input_nomUs" name="nombreUs" type="text" placeholder="Ingresar nombre de usuario"><br>
+    <label for="input_mensaje">Mensaje:</label><input id="input_mensaje" name="mensaje" type="text" placeholder="Escribe un mensaje"><br>
+    <button type="submit">Enviar</button>
+</form>
+
+<h2>Chat</h2>
+
+{{#if hayMensajes}}
+    <ul>
+        {{#each mensajes}}
+        <p>{{this.nombreUs}}: {{this.mensaje}}</p>
+        {{/each}}
+    </ul>
+{{else}}
+<p>Chat vacio</p>
+{{/if}}
+
+<script src="/js/mensajesChat.js"></script>
