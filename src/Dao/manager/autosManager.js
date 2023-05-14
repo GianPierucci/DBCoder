@@ -1,9 +1,9 @@
 import mongoose from "mongoose"
-import { schemaAutos } from "./models/schemaAutos.js"
+import autosModel from "./models/schemaAutos.js"
 
 class AutosManager {
     constructor() {
-        this.autosDB = mongoose.model("Autos", schemaAutos)
+        this.autosDB = autosModel
     }
 
     async guardar(datosAutos){
@@ -17,6 +17,11 @@ class AutosManager {
     async obtenerSegundId(id){
         const idAuto = await this.autosDB.findById(id).lean()
         return idAuto
+    }
+
+    async eliminarTodos(){
+        const eliminar = await this.autosDB.deleteMany({})
+        return eliminar
     }
 }
 

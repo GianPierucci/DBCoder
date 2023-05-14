@@ -1,0 +1,22 @@
+<h2>Listado de vehículos</h2>
+
+{{#if hayAutos}}
+    <ul>
+        {{#each autos}}
+        {{!-- {{#if hayStock}} --}}
+        <br>
+            <li>Vehiculo: {{this.vehicle}}</li>
+            <li>Motor: {{this.motor}}</li>
+            <li>Precio: {{this.price}}</li>
+            <li>Stock: {{this.stock}}</li>
+            <li>Categoria: {{this.category}}</li>
+        <br>
+        {{/each}}
+        {{!-- {{/if}} --}}
+    </ul>
+{{else}}
+<p>No hay vehiculos para mostrar</p>
+{{/if}}
+
+<a href="/?limit={{limit}}&page={{nextPage}}">Next</a>
+<a href="/?limit={{limit}}&page={{prevPage}}">Prev</a>

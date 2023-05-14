@@ -1,23 +1,40 @@
 import { Router } from "express";
 import { autosManager } from "../Dao/manager/autosManager.js";
-import { mensajesManager } from "../Dao/manager/mensajesManager.js";
+import autosModel from "../Dao/manager/models/schemaAutos.js";
+import mongoose from "mongoose";
 
 export const routerVistas = Router();
 
-routerVistas.get("/autos", async (req, res, next) => {
-    const autos = await autosManager.obtenerTodos()
 
-    res.render("cargaAutos", {
-        hayAutos: autos.length > 0,
-        autos
-    });
-});
+routerVistas.get("/", async (req, res, next) => {
+    // const autos = await autosManager.obtenerTodos()
 
-routerVistas.get("/mensajes", async (req, res) => {
-    const mensajes = await mensajesManager.obtenerTodos()
+    const filtroBusq = { category: "Auto"}
+    const opcionesDePag = {
+        limit: req.params.limit ?? 2,
+        page: req.params.page ?? 1,
+        lean: true
+    }
 
-    res.render("chat", {
-        hayMensajes: mensajes.length > 0,
-        mensajes
+    let autosPag = await autosModel.paginate(filtroBusq, opcionesDePag)
+
+    res.render("listadoAutos", {
+        hayAutos: autosPag.docs.length > 0,
+        autos: autosPag.docs,
+        limit: autosPag.limit,
+        page: autosPag.page,
+        totalPages: autosPag.totalPages,
+        hasNextPage: autosPag.hasNextPage,
+        nextPage: autosPag.nextPage,
+        hasPrevPage: autosPag.hasPrevPage,
+        prevPage: autosPag.prevPage,
     })
+    console.log(autosPag);
+    // await autosModel.deleteMany({})
 })
+
+process.on("exit", async () => {
+    await autosModel.deleteMany({})
+})
+
+

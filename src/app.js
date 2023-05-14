@@ -4,6 +4,7 @@ import { engine } from "express-handlebars"
 import { routerApi } from "./routers/routerApi.js"
 import { routerVistas } from "./routers/routerVistas.js"
 import { conectar } from "./database/mongoose.js"
+import autosModel from "./Dao/manager/models/schemaAutos.js"
 
 const app = express()
 
@@ -22,3 +23,4 @@ await conectar()
 app.listen(PORT, () => {
     console.log(`escuchando en el puerto ${PORT}`);
 })
+
